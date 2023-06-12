@@ -11,10 +11,13 @@
   </ion-label>
 </ion-item>
 <swiper-container>
-  <swiper-slide><img src="/assets/perro-1.jpg"></swiper-slide>
-  <swiper-slide><img src="/assets/perro-2.jpg"></swiper-slide>
-  <swiper-slide><img src="/assets/perro-3.jpg"></swiper-slide>
-</swiper-container>
+  <swiper-slide class="image-slide"
+                [style]="img1 | domSanitizer"></swiper-slide>
+                <swiper-slide class="image-slide"
+                [style]="img2 | domSanitizer"></swiper-slide>
+                <swiper-slide class="image-slide"
+                [style]="img3 | domSanitizer"></swiper-slide>
+  </swiper-container>
 
 <ion-item lines="none">
 <ion-icon slot="start" name="heart-outline"></ion-icon>
