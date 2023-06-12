@@ -84,5 +84,20 @@
     </ion-item>
   </ion-list>
 
+  <ion-list>
+    <ion-list-header>
+      ¿Con qué nota valora este TFG?
+    </ion-list-header>
+
+    <ion-item>
+      <ion-range min="1" max="10" step="1" snaps="true" [(ngModel)]="selectedRating" (ionChange)="updateSelectedValue($event)">
+        <ion-label slot="start">1</ion-label>
+        <ion-label slot="end">10</ion-label>
+        <ion-label slot="value">{{ selectedRating }}</ion-label>
+      </ion-range>
+    </ion-item>
+    <p class="selected-value">Valor seleccionado: {{ selectedRating }}</p>
+  </ion-list>
+
   <ion-button expand="full" (click)="enviarRespuestas()">Enviar respuestas</ion-button>
 </ion-content>

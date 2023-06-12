@@ -15,10 +15,16 @@ export class Tab2Page {
   };
   mensajeRespuesta: string | undefined;
   mensajeRespuestaCorta: string | undefined;
+  selectedRating: number | undefined;
+  selectedValue: number | undefined;
 
   constructor() {}
 
   enviarRespuestas() {
     // Aquí puedes agregar la lógica para manejar las respuestas enviadas por el usuario
+  }
+
+  updateSelectedValue(event: any) {
+    this.selectedValue = event.detail.value;
   }
 }
