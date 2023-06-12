@@ -1,17 +1,40 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Tipos de preguntas
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
+<ion-content>
+  <ion-list>
+    <ion-radio-group [(ngModel)]="selectedOption">
+      <ion-list-header>
+        <ion-label>En qué estación del año nos encontramos?</ion-label>
+      </ion-list-header>
+      
+      <ion-item>
+        <ion-label>Primavera</ion-label>
+        <ion-radio slot="start" value="primavera"></ion-radio>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>Verano</ion-label>
+        <ion-radio slot="start" value="verano"></ion-radio>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>Otoño</ion-label>
+        <ion-radio slot="start" value="otono"></ion-radio>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>Invierno</ion-label>
+        <ion-radio slot="start" value="invierno"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
 
+  <ion-button (click)="checkAnswer()">Comprobar</ion-button>
 </ion-content>

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ToastController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-tab2',
@@ -6,7 +8,26 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  
+  selectedOption: string | undefined;
 
-  constructor() {}
+  constructor(private toastController: ToastController) {}
 
+  async checkAnswer() {
+    let message: string;
+
+    if (this.selectedOption === 'verano') {
+      message = '¡Respuesta correcta!';
+    } else {
+      message = 'Respuesta incorrecta. La estación del año actual no es verano.';
+    }
+
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: 'bottom',
+    });
+
+    toast.present();
+  }
 }
