@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Pregunta 3
+      Pregunta
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,29 +9,16 @@
 <ion-content>
   <ion-list>
     <ion-list-header>
-      ¿Cómo se suele llamar a las personas que se llaman José?
+      Define con tus palabras el TFG (Trabajo de Fin de Grado)
     </ion-list-header>
 
     <ion-item>
-      <ion-label>Juan</ion-label>
-      <ion-checkbox [(ngModel)]="selectedOptions['Juan']"></ion-checkbox>
+      <ion-textarea maxlength="140" [(ngModel)]="mensajeRespuesta" autoGrow="true"></ion-textarea>
     </ion-item>
-
-    <ion-item>
-      <ion-label>Jose</ion-label>
-      <ion-checkbox [(ngModel)]="selectedOptions['Jose']"></ion-checkbox>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Pepe</ion-label>
-      <ion-checkbox [(ngModel)]="selectedOptions['Pepe']"></ion-checkbox>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Alvaro</ion-label>
-      <ion-checkbox [(ngModel)]="selectedOptions['Alvaro']"></ion-checkbox>
+    <ion-item *ngIf="mensajeRespuesta?.length === 140" color="danger">
+      Límite de caracteres alcanzado (140 caracteres máximos).
     </ion-item>
   </ion-list>
 
-  <ion-button expand="full" (click)="checkAnswer()">Comprobar respuesta</ion-button>
+  <ion-button expand="full" (click)="enviarRespuesta()">Enviar respuesta</ion-button>
 </ion-content>

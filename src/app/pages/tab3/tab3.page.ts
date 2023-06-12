@@ -7,34 +7,13 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['tab3.page.scss'],
 })
 export class Tab3Page {
-  selectedOptions: { [key: string]: boolean } = {
-    'Juan': false,
-    'Jose': false,
-    'Pepe': false,
-    'Alvaro': false
-  };
+  mensajeRespuesta: string | undefined;
 
   constructor(private toastController: ToastController) {}
 
-  async checkAnswer() {
-    let message: string;
-
-    const selectedValues = Object.values(this.selectedOptions);
-    const selectedCount = selectedValues.filter(value => value === true).length;
-
-    if (
-      this.selectedOptions['Jose'] &&
-      this.selectedOptions['Pepe'] &&
-      selectedCount >= 2 &&
-      selectedCount <= 4
-    ) {
-      message = 'Respuesta 3: ¡Correcta!';
-    } else {
-      message = 'Respuesta 3: Incorrecta. Las personas que se llaman José suelen ser conocidas como Jose o Pepe.';
-    }
-
+  async enviarRespuesta() {
     const toast = await this.toastController.create({
-      message: message,
+      message: `Respuesta: ${this.mensajeRespuesta}`,
       duration: 2000,
       position: 'bottom',
     });
