@@ -1,40 +1,62 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Tipos de preguntas
+      Preguntas
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
   <ion-list>
-    <ion-radio-group [(ngModel)]="selectedOption">
-      <ion-list-header>
-        <ion-label>En qué estación del año nos encontramos?</ion-label>
-      </ion-list-header>
-      
+    <ion-list-header>
+      Pregunta 1
+    </ion-list-header>
+
+    <ion-radio-group [(ngModel)]="selectedOption1">
       <ion-item>
         <ion-label>Primavera</ion-label>
-        <ion-radio slot="start" value="primavera"></ion-radio>
+        <ion-radio value="Primavera"></ion-radio>
       </ion-item>
-      
       <ion-item>
         <ion-label>Verano</ion-label>
-        <ion-radio slot="start" value="verano"></ion-radio>
+        <ion-radio value="Verano"></ion-radio>
       </ion-item>
-      
       <ion-item>
         <ion-label>Otoño</ion-label>
-        <ion-radio slot="start" value="otono"></ion-radio>
+        <ion-radio value="Otoño"></ion-radio>
       </ion-item>
-      
       <ion-item>
         <ion-label>Invierno</ion-label>
-        <ion-radio slot="start" value="invierno"></ion-radio>
+        <ion-radio value="Invierno"></ion-radio>
       </ion-item>
     </ion-radio-group>
   </ion-list>
 
-  <ion-button (click)="checkAnswer()">Comprobar</ion-button>
+  <ion-list>
+    <ion-list-header>
+      Pregunta 3
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Juan</ion-label>
+      <ion-checkbox [(ngModel)]="selectedOptions['Juan']"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Jose</ion-label>
+      <ion-checkbox [(ngModel)]="selectedOptions['Jose']"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Pepe</ion-label>
+      <ion-checkbox [(ngModel)]="selectedOptions['Pepe']"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Alvaro</ion-label>
+      <ion-checkbox [(ngModel)]="selectedOptions['Alvaro']"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" (click)="checkAnswers()">Comprobar respuestas</ion-button>
 </ion-content>

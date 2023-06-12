@@ -1,25 +1,45 @@
 import { Component } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 
-
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  styleUrls: ['tab2.page.scss'],
 })
 export class Tab2Page {
-  
-  selectedOption: string | undefined;
+  selectedOption1: string | undefined;
+  selectedOptions: { [key: string]: boolean } = {
+    'Juan': false,
+    'Jose': false,
+    'Pepe': false,
+    'Alvaro': false
+  };
 
   constructor(private toastController: ToastController) {}
 
-  async checkAnswer() {
-    let message: string;
+  async checkAnswers() {
+    let message: string = '';
 
-    if (this.selectedOption === 'verano') {
-      message = '¡Respuesta correcta!';
+    // Verificar la respuesta de la Pregunta 1
+    if (this.selectedOption1 === 'Verano') {
+      message += 'Respuesta 1: ¡Correcta!\n';
     } else {
-      message = 'Respuesta incorrecta. La estación del año actual no es verano.';
+      message += 'Respuesta 1: Incorrecta. La estación del año en la que nos encontramos es Verano.\n';
+    }
+
+    // Verificar la respuesta de la Pregunta 3
+    const selectedValues = Object.values(this.selectedOptions);
+    const selectedCount = selectedValues.filter(value => value === true).length;
+
+    if (
+      this.selectedOptions['Jose'] &&
+      this.selectedOptions['Pepe'] &&
+      selectedCount >= 2 &&
+      selectedCount <= 4
+    ) {
+      message += 'Respuesta 3: ¡Correcta!';
+    } else {
+      message += 'Respuesta 3: Incorrecta. Las personas que se llaman José suelen ser conocidas como Jose o Pepe.';
     }
 
     const toast = await this.toastController.create({

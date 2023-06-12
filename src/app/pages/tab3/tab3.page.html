@@ -1,16 +1,37 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Pregunta 3
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      ¿Cómo se suele llamar a las personas que se llaman José?
+    </ion-list-header>
 
+    <ion-item>
+      <ion-label>Juan</ion-label>
+      <ion-checkbox [(ngModel)]="selectedOptions['Juan']"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Jose</ion-label>
+      <ion-checkbox [(ngModel)]="selectedOptions['Jose']"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Pepe</ion-label>
+      <ion-checkbox [(ngModel)]="selectedOptions['Pepe']"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Alvaro</ion-label>
+      <ion-checkbox [(ngModel)]="selectedOptions['Alvaro']"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" (click)="checkAnswer()">Comprobar respuesta</ion-button>
 </ion-content>
