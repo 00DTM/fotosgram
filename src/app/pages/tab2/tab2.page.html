@@ -58,5 +58,31 @@
     </ion-item>
   </ion-list>
 
-  <ion-button expand="full" (click)="checkAnswers()">Comprobar respuestas</ion-button>
+  <ion-list>
+    <ion-list-header>
+      Define con tus palabras el TFG (Trabajo de Fin de Grado)
+    </ion-list-header>
+
+    <ion-item>
+      <ion-textarea maxlength="140" [(ngModel)]="mensajeRespuestaCorta" autoGrow="true"></ion-textarea>
+    </ion-item>
+    <ion-item *ngIf="mensajeRespuestaCorta?.length === 140" color="danger">
+      Límite de caracteres alcanzado (140 caracteres máximos).
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      Pregunta 4
+    </ion-list-header>
+
+    <ion-item>
+      <ion-textarea class="custom-textarea" maxlength="500" [(ngModel)]="mensajeRespuesta"></ion-textarea>
+    </ion-item>
+    <ion-item *ngIf="mensajeRespuesta?.length === 500" color="danger">
+      Límite de caracteres alcanzado (500 caracteres máximos).
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" (click)="enviarRespuestas()">Enviar respuestas</ion-button>
 </ion-content>
