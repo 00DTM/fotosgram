@@ -7,33 +7,47 @@ import { PostsService } from 'src/app/services/posts.service';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page implements OnInit{
+export class Tab1Page implements OnInit {
 
   posts: Post[] = [];
 
-  constructor(private postsService: PostsService) {}
+  habilitado = true;
+
+  constructor(private postsService: PostsService) { }
 
   ngOnInit() {
-this.siguientes();
+    this.siguientes();
   }
 
-  siguientes(event?: any){
-    this.postsService.getPosts().subscribe(resp => {
+  recargar(event: any) {
+    this.siguientes(event, true);
+  }
+
+  siguientes(event?: any, pull: boolean = false) {
+    if(pull){
+      this.habilitado=true;
+      this.posts=[];
+    }
+    
+    this.postsService.getPosts(pull).subscribe(resp => {
       console.log(resp)
       this.posts.push(...resp.posts);
 
-      if (event){
+      if (event) {
         event.target.complete();
 
-        if (resp.posts.length===0){
-          event.target.disable = true;
+        if (resp.posts.length === 0) {
+          this.habilitado=false;
+
         }
 
       }
 
 
-      
+
     });
   }
+
+
 
 }
