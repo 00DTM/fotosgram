@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -7,17 +6,16 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['tab3.page.scss'],
 })
 export class Tab3Page {
-  mensajeRespuesta: string | undefined;
+  selectedRating: number | undefined;
+  selectedValue: number | undefined;
 
-  constructor(private toastController: ToastController) {}
+  constructor() {}
 
-  async enviarRespuesta() {
-    const toast = await this.toastController.create({
-      message: `Respuesta: ${this.mensajeRespuesta}`,
-      duration: 2000,
-      position: 'bottom',
-    });
+  updateSelectedValue(event: any) {
+    this.selectedValue = event.detail.value;
+  }
 
-    toast.present();
+  enviarRespuesta() {
+    // Aquí puedes agregar la lógica para manejar la respuesta enviada por el usuario
   }
 }

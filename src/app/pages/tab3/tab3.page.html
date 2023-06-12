@@ -9,15 +9,17 @@
 <ion-content>
   <ion-list>
     <ion-list-header>
-      Define con tus palabras el TFG (Trabajo de Fin de Grado)
+      ¿Con qué nota valora este TFG?
     </ion-list-header>
 
     <ion-item>
-      <ion-textarea maxlength="140" [(ngModel)]="mensajeRespuesta" autoGrow="true"></ion-textarea>
+      <ion-range min="1" max="10" step="1" snaps="true" [(ngModel)]="selectedRating" (ionChange)="updateSelectedValue($event)">
+        <ion-label slot="start">1</ion-label>
+        <ion-label slot="end">10</ion-label>
+        <ion-label slot="value">{{ selectedRating }}</ion-label>
+      </ion-range>
     </ion-item>
-    <ion-item *ngIf="mensajeRespuesta?.length === 140" color="danger">
-      Límite de caracteres alcanzado (140 caracteres máximos).
-    </ion-item>
+    <p class="selected-value">Valor seleccionado: {{ selectedRating }}</p>
   </ion-list>
 
   <ion-button expand="full" (click)="enviarRespuesta()">Enviar respuesta</ion-button>
