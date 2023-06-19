@@ -14,8 +14,11 @@ export class ResultadosPage implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
+      // Se suscribe a los cambios de los parámetros en la URL utilizando ActivatedRoute.
       this.nota = +params['nota'];
+      // Se obtiene el valor del parámetro 'nota' de la URL y se convierte en un número utilizando el operador +.
       this.setMensaje();
+      // Se llama a la función setMensaje() para establecer el mensaje según el valor de "nota".
     });
   }
 
