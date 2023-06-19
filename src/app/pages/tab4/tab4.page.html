@@ -1,57 +1,37 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Test Ejemplo</ion-title>
+    <ion-title>Encuesta</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
   <ion-list>
-    <ion-radio-group [(ngModel)]="pregunta1">
-      <ion-list-header>
-        <ion-label>Pregunta 1: ¿Qué nota merece este TFG?</ion-label>
-      </ion-list-header>
+    <ion-list-header>
+      <ion-label>¿Eres diestro o zurdo?</ion-label>
+    </ion-list-header>
+    <ion-radio-group [(ngModel)]="respuesta">
       <ion-item>
-        <ion-label>Aprobado</ion-label>
-        <ion-radio slot="start" value="Aprobado"></ion-radio>
+        <ion-label>Diestro</ion-label>
+        <ion-radio slot="start" value="diestro"></ion-radio>
       </ion-item>
       <ion-item>
-        <ion-label>Bien</ion-label>
-        <ion-radio slot="start" value="Bien"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Notable</ion-label>
-        <ion-radio slot="start" value="Notable"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Sobresaliente</ion-label>
-        <ion-radio slot="start" value="Sobresaliente"></ion-radio>
-      </ion-item>
-    </ion-radio-group>
-
-    <ion-radio-group [(ngModel)]="pregunta2">
-      <ion-list-header>
-        <ion-label>Pregunta 2: ¿Cómo se llama el autor del TFG?</ion-label>
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Daniel</ion-label>
-        <ion-radio slot="start" value="Daniel"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Pepe</ion-label>
-        <ion-radio slot="start" value="Pepe"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Juan</ion-label>
-        <ion-radio slot="start" value="Juan"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Alvaro</ion-label>
-        <ion-radio slot="start" value="Alvaro"></ion-radio>
+        <ion-label>Zurdo</ion-label>
+        <ion-radio slot="start" value="zurdo"></ion-radio>
       </ion-item>
     </ion-radio-group>
   </ion-list>
 
   <div class="ion-text-center ion-margin-top">
-    <ion-button (click)="enviarRespuestas()">Enviar respuestas</ion-button>
+    <ion-button (click)="enviarRespuesta()">Enviar</ion-button>
+  </div>
+
+  <div class="ion-text-center ion-margin-top">
+    <ion-button (click)="mostrarRespuestas()">Mostrar respuestas</ion-button>
+  </div>
+
+  <div *ngIf="mostrarResultados" class="ion-text-center ion-margin-top">
+    <ion-label>Cantidad de respuestas:</ion-label>
+    <div>Diestro: {{ contadorRespuestas.diestro }}</div>
+    <div>Zurdo: {{ contadorRespuestas.zurdo }}</div>
   </div>
 </ion-content>
