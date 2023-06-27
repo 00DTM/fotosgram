@@ -7,31 +7,21 @@
 <ion-content class="ion-padding">
   <ion-list>
     <ion-list-header>
-      <ion-label>¿Eres diestro o zurdo?</ion-label>
+      <ion-label>¿Eres zurdo o diestro?</ion-label>
     </ion-list-header>
     <ion-radio-group [(ngModel)]="respuesta">
-      <ion-item>
-        <ion-label>Diestro</ion-label>
-        <ion-radio slot="start" value="diestro"></ion-radio>
-      </ion-item>
       <ion-item>
         <ion-label>Zurdo</ion-label>
         <ion-radio slot="start" value="zurdo"></ion-radio>
       </ion-item>
+      <ion-item>
+        <ion-label>Diestro</ion-label>
+        <ion-radio slot="start" value="diestro"></ion-radio>
+      </ion-item>
     </ion-radio-group>
   </ion-list>
 
-  <div class="ion-text-center ion-margin-top">
-    <ion-button (click)="enviarRespuesta()">Enviar</ion-button>
-  </div>
-
-  <div class="ion-text-center ion-margin-top">
-    <ion-button (click)="mostrarRespuestas()">Mostrar respuestas</ion-button>
-  </div>
-
-  <div *ngIf="mostrarResultados" class="ion-text-center ion-margin-top">
-    <ion-label>Cantidad de respuestas:</ion-label>
-    <div>Diestro: {{ contadorRespuestas.diestro }}</div>
-    <div>Zurdo: {{ contadorRespuestas.zurdo }}</div>
+  <div>
+    <ion-button expand="full" (click)="enviarRespuestas()">Enviar respuestas</ion-button>
   </div>
 </ion-content>

@@ -1,5 +1,19 @@
-.selected-value {
-    text-align: center;
-    font-weight: bold;
-    margin-top: 10px;
-  }
+.contador {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.contador-item {
+  text-align: center;
+}
+
+.advertencia {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.required {
+  color: red;
+}

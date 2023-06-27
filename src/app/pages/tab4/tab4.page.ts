@@ -1,7 +1,8 @@
+// encuesta.component.ts
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
-
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-tab4',
@@ -9,45 +10,51 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['tab4.page.scss'],
 })
 export class Tab4Page {
-  respuesta: string | undefined |null;
-  respuestas: { id: string, respuesta: string }[] = [];
-  mostrarResultados: boolean = false;
-  contadorRespuestas: { diestro: number, zurdo: number } = { diestro: 0, zurdo: 0 };
+  respuesta: string | null = null;
+  contadorRespuestas: { zurdo: number; diestro: number } = { zurdo: 0, diestro: 0 };
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  enviarRespuesta() {
+  enviarRespuestas() {
     if (this.respuesta) {
-      const idAleatorio = this.generarIdAleatorio();
-      const respuestaJson = { id: idAleatorio, respuesta: this.respuesta };
-      this.respuestas.push(respuestaJson);
-      this.actualizarContadorRespuestas(this.respuesta);
-      
-      console.log('Respuesta enviada:', respuestaJson);
-      // Aquí puedes realizar acciones adicionales, como enviar el JSON al servidor
+      // Incrementa el contador de respuestas
+      if (this.respuesta === 'zurdo') {
+        this.contadorRespuestas.zurdo++;
+      } else if (this.respuesta === 'diestro') {
+        this.contadorRespuestas.diestro++;
+      }
 
-      // Limpiar la selección de respuesta después de enviar
-      this.respuesta = null;
+      // Enviar las respuestas al servidor
+      this.http.post('http://localhost:8080/endpoint', this.contadorRespuestas)
+        .pipe(
+          catchError((error: HttpErrorResponse) => {
+            console.error('Error al enviar las respuestas:', error);
+            return throwError('Ha ocurrido un error. Por favor, inténtalo nuevamente.'); // Puedes personalizar el mensaje de error si lo deseas
+          })
+        )
+        .subscribe(
+          (response: any) => { // Utiliza el tipo de datos adecuado según la estructura de la respuesta JSON
+            console.log('Respuesta del servidor:', response);
+            // Puedes mostrar un mensaje en la interfaz de usuario
+            alert('Respuestas enviadas y contador actualizado, ¡gracias por participar!');
+          },
+          (error) => {
+            console.error('Error al enviar las respuestas:', error);
+          }
+        );
     } else {
-      console.log('Por favor, seleccione una opción.');
+      console.log('Por favor, selecciona una opción.');
     }
   }
 
-  mostrarRespuestas() {
-    this.mostrarResultados = true;
-  }
-
-  generarIdAleatorio(): string {
-    // Generar un ID aleatorio utilizando Math.random() y convertirlo a una cadena
-    const id = Math.random().toString(36).substr(2, 9);
-    return id;
-  }
-
-  actualizarContadorRespuestas(respuesta: string) {
-    if (respuesta === 'diestro') {
-      this.contadorRespuestas.diestro++;
-    } else if (respuesta === 'zurdo') {
-      this.contadorRespuestas.zurdo++;
-    }
+  leerJSON() {
+    this.http.get('http://localhost:8080/data.json').subscribe(
+      (data) => {
+        console.log('Contenido del JSON:', data);
+      },
+      (error) => {
+        console.error('Error al leer el JSON:', error);
+      }
+    );
   }
 }
